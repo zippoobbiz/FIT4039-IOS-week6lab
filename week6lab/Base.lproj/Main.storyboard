@@ -34,7 +34,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gU4-Wo-Q2d">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU4-Wo-Q2d">
                                             <rect key="frame" x="146" y="37" width="446" height="76"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -59,6 +59,7 @@
                                     <outlet property="descriptionTextView" destination="gU4-Wo-Q2d" id="eDs-VT-49n"/>
                                     <outlet property="thumbernailImage" destination="CHP-Fs-Djc" id="8IM-fc-AlM"/>
                                     <outlet property="titleLabel" destination="TOg-LL-jPR" id="7oz-bh-gwT"/>
+                                    <segue destination="1UX-cr-k77" kind="show" identifier="ReadNews" id="A8Z-BD-ezO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -72,6 +73,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgp-o4-eXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="186" y="310"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Pml-CU-XYv">
+            <objects>
+                <viewController id="1UX-cr-k77" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ew1-xi-6zY"/>
+                        <viewControllerLayoutGuide type="bottom" id="guf-Ws-h9S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="afw-VJ-qt3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emT-RW-81u">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="emT-RW-81u" firstAttribute="bottom" secondItem="guf-Ws-h9S" secondAttribute="top" id="U3Y-FZ-GGO"/>
+                            <constraint firstItem="emT-RW-81u" firstAttribute="top" secondItem="afw-VJ-qt3" secondAttribute="top" id="Xb3-Ux-fA9"/>
+                            <constraint firstItem="emT-RW-81u" firstAttribute="leading" secondItem="afw-VJ-qt3" secondAttribute="leading" id="aV6-Vw-EQx"/>
+                            <constraint firstAttribute="trailing" secondItem="emT-RW-81u" secondAttribute="trailing" id="og7-of-jmd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="emT-RW-81u" id="fLh-Gd-WKI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuJ-KB-KiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="310"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5yA-Hy-DRI">

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ArticleCell.h"
 #import "Article.h"
+#import "WebViewController.h"
 
-@interface NewsListViewController : UITableViewController
+@interface NewsListViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray* newsList;
 -(void)downloadNews;

@@ -17,6 +17,8 @@
 		8A59B03B1ADD1C3A00CCC4B6 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A59B03A1ADD1C3A00CCC4B6 /* Article.m */; };
 		8A59B03E1ADD1DD200CCC4B6 /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A59B03D1ADD1DD200CCC4B6 /* NewsListViewController.m */; };
 		8A59B0411ADD1DEA00CCC4B6 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A59B0401ADD1DEA00CCC4B6 /* ArticleCell.m */; };
+		8A79C2B11ADE4FEB00288875 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C2B01ADE4FEB00288875 /* WebViewController.m */; };
+		8A79C2B51ADE68CC00288875 /* emptybox.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A79C2B41ADE68CC00288875 /* emptybox.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		8A59B03D1ADD1DD200CCC4B6 /* NewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
 		8A59B03F1ADD1DEA00CCC4B6 /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
 		8A59B0401ADD1DEA00CCC4B6 /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
+		8A79C2AF1ADE4FEB00288875 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		8A79C2B01ADE4FEB00288875 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		8A79C2B41ADE68CC00288875 /* emptybox.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = emptybox.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +109,8 @@
 				8A59B03D1ADD1DD200CCC4B6 /* NewsListViewController.m */,
 				8A59B03F1ADD1DEA00CCC4B6 /* ArticleCell.h */,
 				8A59B0401ADD1DEA00CCC4B6 /* ArticleCell.m */,
+				8A79C2AF1ADE4FEB00288875 /* WebViewController.h */,
+				8A79C2B01ADE4FEB00288875 /* WebViewController.m */,
 			);
 			path = week6lab;
 			sourceTree = "<group>";
@@ -111,6 +118,7 @@
 		8A59B0131ADD1C1900CCC4B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8A79C2B41ADE68CC00288875 /* emptybox.gif */,
 				8A59B0141ADD1C1900CCC4B6 /* Info.plist */,
 				8A59B0151ADD1C1900CCC4B6 /* main.m */,
 			);
@@ -214,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A79C2B51ADE68CC00288875 /* emptybox.gif in Resources */,
 				8A59B01F1ADD1C1900CCC4B6 /* Main.storyboard in Resources */,
 				8A59B0241ADD1C1900CCC4B6 /* LaunchScreen.xib in Resources */,
 				8A59B0211ADD1C1900CCC4B6 /* Images.xcassets in Resources */,
@@ -235,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A59B03B1ADD1C3A00CCC4B6 /* Article.m in Sources */,
+				8A79C2B11ADE4FEB00288875 /* WebViewController.m in Sources */,
 				8A59B01C1ADD1C1900CCC4B6 /* ViewController.m in Sources */,
 				8A59B0411ADD1DEA00CCC4B6 /* ArticleCell.m in Sources */,
 				8A59B0191ADD1C1900CCC4B6 /* AppDelegate.m in Sources */,
@@ -430,6 +440,7 @@
 				8A59B0351ADD1C1900CCC4B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A59B0361ADD1C1900CCC4B6 /* Build configuration list for PBXNativeTarget "week6labTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +449,7 @@
 				8A59B0381ADD1C1900CCC4B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

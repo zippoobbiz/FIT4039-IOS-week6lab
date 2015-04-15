@@ -53,11 +53,15 @@
     ArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleCell" forIndexPath:indexPath];
     Article* a = [self.newsList objectAtIndex:indexPath.row];
     cell.titleLabel.text = a.title;
-    cell.descriptionTextView = a.descriptions;
-    if(a.imageUrl)
+    cell.descriptionTextView.text = a.descriptions;
+    if(![[a.imageUrl absoluteString] isEqualToString:@"(null)"])
     {
         NSLog(@"%@",a.imageUrl);
         cell.thumbernailImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[a.imageUrl absoluteString]]]];
+    }else{
+        NSLog(@"use empty box image");
+        UIImage * image = [UIImage imageNamed:@"emptybox.gif"];
+        cell.thumbernailImage.image = image;
     }
     // Configure the cell...
     
@@ -66,6 +70,18 @@
 
 -(void)downloadNews
 {
+    
+    UIAlertView *loadingAlert;
+
+    loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading news\nPlease Wait..."
+                                        message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+    
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicator startAnimating];
+    [loadingAlert setValue:indicator forKey:@"accessoryView"];
+    [loadingAlert show];
+    
     NSURL* url = [NSURL URLWithString:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.abc.net.au/news/feed/51120/rss.xml&"];
     
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
@@ -76,9 +92,18 @@
          {
              [self parseNewsJSON:data];
              [self.tableView reloadData];
+             [loadingAlert dismissWithClickedButtonIndex:0 animated:TRUE];
          }
          else
          {
+             [loadingAlert dismissWithClickedButtonIndex:0 animated:TRUE];
+             UIAlertView *noConnectionAlert = [[UIAlertView alloc] initWithTitle:@"Connection Error!"
+                                                                message:@"Cannot dowlnoad news from ABC, please check your Internet connection!"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+             noConnectionAlert.tag = 100;
+             [noConnectionAlert show];
              NSLog(@"Connection Error:\n%@", error.userInfo);
          } }];
     
@@ -104,15 +129,15 @@
             NSDictionary *jsontitle = [news objectForKey:@"title"];
             NSDictionary *jsondescriptions = [news objectForKey:@"content"];
             NSDictionary *jsonuimageurl = [[[[[[[news objectForKey:@"mediaGroups"] objectAtIndex:0] objectForKey:@"contents"] objectAtIndex:0] objectForKey:@"thumbnails"] objectAtIndex:0]objectForKey:@"url"];
+            NSDictionary *jsonlink = [news objectForKey:@"link"];
             Article* article = [[Article alloc]init];
-            article.title = jsontitle;
-            article.descriptions  =jsondescriptions;
-            article.imageUrl = [NSURL URLWithString:jsonuimageurl];
+            article.title = [[NSString alloc] initWithFormat:@"%@",jsontitle];
+            article.descriptions  = [[[[NSString alloc] initWithFormat:@"%@",jsondescriptions] stringByReplacingOccurrencesOfString:@"<p>" withString:@""] stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
             
-            
-            
+            article.imageUrl = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@",jsonuimageurl]];
+            article.articleLink =[NSURL URLWithString:[[NSString alloc] initWithFormat:@"%@",jsonlink]];
             [self.newsList addObject:article];
-            NSLog(@"length: %d",[self.newsList count]);
+//            NSLog(@"length: %d",[self.newsList count]);
 //            NSLog(@"%@",jsontitle);
 //            NSLog(@"%@",jsondescriptions);
 //            NSLog(@"%@",jsonuimageurl);
@@ -128,6 +153,13 @@
     {
         NSLog(@"Unexpected JSON format");
         return;
+    }
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (alertView.tag == 100) {
+        [self downloadNews];
     }
 }
 /*
@@ -164,14 +196,22 @@
  }
  */
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     if([segue.identifier isEqualToString:@"ReadNews"])
+     {
+         WebViewController* controller = segue.destinationViewController;
+         NSURL* url;
+         Article* a = (Article *)[self.newsList objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+         url = a.articleLink;
+         controller.newsLink = url;
+     }
  }
- */
+
 
 @end

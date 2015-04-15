@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [_descriptionTextView setScrollEnabled:NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
