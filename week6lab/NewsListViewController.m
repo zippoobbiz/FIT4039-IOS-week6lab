@@ -82,7 +82,7 @@
     [loadingAlert setValue:indicator forKey:@"accessoryView"];
     [loadingAlert show];
     
-    NSURL* url = [NSURL URLWithString:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.abc.net.au/news/feed/51120/rss.xml&"];
+    NSURL* url = [NSURL URLWithString:@"http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.abc.net.au/news/feed/51120/rss.xml&num=-1"];
     
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     
