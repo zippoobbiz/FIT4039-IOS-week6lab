@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController
+@interface WebViewController : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong,nonatomic) NSURL * newsLink;
-
+@property (strong,nonatomic) UIAlertView *loadingAlert;
 -(id)initWithLink:(NSURL*) newsLink;
 
 @end
